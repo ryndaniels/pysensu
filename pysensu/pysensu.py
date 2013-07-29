@@ -55,37 +55,37 @@ class Pysensu():
         r = self._api_call("{}/clients/{}/history".format(self.api_url, client), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting client history ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_client(self, client):
         r = self._api_call("{}/clients/{}".format(self.api_url, client), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting client ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_all_clients(self):
         r = self._api_call("{}/clients".format(self.api_url), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting clients ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_all_stashes(self):
         r = self._api_call("{}/stashes".format(self.api_url), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting stashes ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_check(self, check):
         r = self._api_call("{}/checks/{}".format(self.api_url, check), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting check ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_all_checks(self):
         r = self._api_call("{}/checks".format(self.api_url), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting checks ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def request_check(self, check, subscribers):
         data = {
@@ -100,19 +100,19 @@ class Pysensu():
         r = self._api_call("{}/events".format(self.api_url), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting events ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_all_client_events(self, client):
         r = self._api_call("{}/events/{}".format(self.api_url, client), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting client events ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def get_event(self, client, check):
         r = self._api_call("{}/events/{}/{}".format(self.api_url, client, check), "get")
         if r.status_code != requests.codes.ok:
             raise ValueError("Error getting event ({})".format(r.status_code))
-        return r.json
+        return r.json()
 
     def delete_event(self, client, check):
         r = self._api_call("{}/events/{}/{}".format(self.api_url, client, check), "delete")

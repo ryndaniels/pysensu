@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='pysensu',
-      version='0.2',
+      version='0.3',
       description='Utilities for working with Sensu',
       author='Katherine Daniels',
       author_email='kd@gc.io',

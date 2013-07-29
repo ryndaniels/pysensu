@@ -6,7 +6,7 @@ from setuptools import setup
 setup(name='pysensu',
       version='0.5',
       description='Utilities for working with Sensu',
-      author='Katherine Daniels',
+      author='K. Daniels',
       author_email='kd@gc.io',
       url='https://github.com/kdaniels/pysensu',
       packages=['pysensu'],

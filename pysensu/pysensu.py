@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import requests
 
 
@@ -87,12 +88,11 @@ class Pysensu():
         return r.json
 
     def request_check(self, check, subscribers):
-        # TODO: Fix this, it currently 400s :(
         data = {
             "check": check,
             "subscribers": subscribers
         }
-        r = self._api_call("{}/check/request".format(self.api_url), "post", data="{}".format(data))
+        r = self._api_call("{}/check/request".format(self.api_url), "post", json.dumps(data))
         if r.status_code != requests.codes.accepted:
             raise ValueError("Error requesting check ({}, {})".format(r.status_code, r.json))
 
@@ -120,11 +120,10 @@ class Pysensu():
             raise ValueError("Error deleting event ({})".format(r.status_code))
 
     def resolve_event(self, client, check):
-        # TODO: Fix this
         data = {
             "client": client,
             "check": check
         }
-        r = self._api_call("{}/event/resolve".format(self.api_url), "post", data=data)
+        r = self._api_call("{}/event/resolve".format(self.api_url), "post", json.dumps(data))
         if r.status_code != requests.codes.accepted:
             raise ValueError("Error getting client({})".format(r.status_code))

@@ -14,7 +14,7 @@ Pysensu uses the hostname and port where your sensu-api is running.
 
     from pysensu import pysensu
 
-    client = pysensu.Pysensu("sensu.organization.com", 4567)
+    client = pysensu.Pysensu("sensu.organization.com", port=4567)
 
     # Stashes
     client.create_stash('server1')

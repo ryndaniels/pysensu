@@ -11,9 +11,9 @@ class Pysensu():
         self.password = password
         self.port = port
 
-        if self.user and self.port:
+        if self.user and self.password:
             self.api_url = "https://{}:{}@{}:{}".format(user, password, host, port)
-        elif not self.user and not self.port:
+        elif not self.user and not self.password:
             self.api_url = "http://{}:{}".format(host, port)
         else:
             raise ValueError("Must specify both user and password")

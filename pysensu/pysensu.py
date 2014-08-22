@@ -5,18 +5,26 @@ import requests
 
 
 class Pysensu():
-    def __init__(self, host, user=None, password=None, port=4567):
+    def __init__(self, host, user=None, password=None, port=4567, ssl=False):
         self.host = host
         self.user = user
         self.password = password
         self.port = port
+        self.ssl = ssl
+        self.api_url = self._build_api_url(host, user, password, port, ssl)
 
-        if self.user and self.password:
-            self.api_url = "https://{}:{}@{}:{}".format(user, password, host, port)
-        elif not self.user and not self.password:
-            self.api_url = "http://{}:{}".format(host, port)
+    def _build_api_url(self, host, user, password, port, ssl):
+        if ssl == True:
+            protocol = 'https'
         else:
-            raise ValueError("Must specify both user and password")
+            protocol = 'http'
+        if user and password:
+            credentials = "{}:{}@".format(user, password)
+        elif (user and not password) or (password and not user):
+            raise ValueError("Must specify both user and password, or neither")
+        else:
+            credentials = ""
+        return "{}://{}{}:{}".format(protocol, credentials, host, port)
 
     def _api_call(self, url, method, data=None):
         if method == "post":
